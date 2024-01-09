@@ -70,4 +70,17 @@ contract DAO {
     _recipient,
     msg.sender);
    }
+
+   function vote(uint256 _id) external onlyInvestor{
+    // Fetch proposal from mapping by id
+    Proposal storage proposals = proposals[_id];
+
+    // Update votes
+    proposal.votes += token.balanceOf(msg.sender);
+
+    // track that user has voted
+
+    // Emit an event
+   }
+   
 }

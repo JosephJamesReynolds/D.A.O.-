@@ -138,4 +138,46 @@ describe("DAO", () => {
       });
     });
   });
+
+  describe("Voting", () => {
+    let transaction, result;
+
+    beforeEach(async () => {
+      transaction = await dao
+        .connect(investor1)
+        .createProposal("Proposal 1", ether(100), recipient.address);
+      result = await transaction.wait();
+    });
+
+    describe("Success", () => {
+      beforeEach(async () => {
+        transaction = await dao.connect(investor1).vote(1);
+        result = await transaction.wait();
+      });
+
+      it("updated the vote count", async () => {
+        const proposal = await dao.proposals(1);
+        expect(proposal.votes).to.equal(tokens(200000));
+      });
+
+      describe("Failure", () => {
+        // it("rejects invalid amount", async () => {
+        //   await expect(
+        //     dao
+        //       .connect(investor1)
+        //       .createProposal("Proposal 1", ether(1000), recipient.address)
+        //   ).to.be.reverted;
+
+        //   it("rejects non investor", async () => {
+        //     await expect(
+        //       dao
+        //         .connect(investor1)
+        //         .createProposal("Proposal 1", ether(100), recipient.address)
+        //     ).to.be.reverted;
+        //   });
+
+        it("", async () => {});
+      });
+    });
+  });
 });
