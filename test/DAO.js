@@ -165,18 +165,18 @@ describe("DAO", () => {
           .to.emit(dao, "Vote")
           .withArgs(1, investor1.address);
       });
+    });
 
-      describe("Failure", () => {
-        it("rejects non investor", async () => {
-          await expect(dao.connect(user).vote(1)).to.be.reverted;
-        });
+    describe("Failure", () => {
+      it("rejects non investor", async () => {
+        await expect(dao.connect(user).vote(1)).to.be.reverted;
+      });
 
-        it("rejects double voting", async () => {
-          transaction = await dao.connect(investor1).vote(1);
-          await transaction.wait();
+      it("rejects double voting", async () => {
+        transaction = await dao.connect(investor1).vote(1);
+        await transaction.wait();
 
-          await expect(dao.connect(investor1).vote(1)).to.be.reverted;
-        });
+        await expect(dao.connect(investor1).vote(1)).to.be.reverted;
       });
     });
   });
