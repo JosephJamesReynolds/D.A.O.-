@@ -64,9 +64,9 @@ describe("DAO", () => {
 
     // Deploy DAO
     // Set Quorum to > 50% of token total supply.
-    // 500k tokens + 1 wei, i.e., 5000000000000000001
+    // 500k tokens + 1 wei, i.e., 500000000000000000000001
     const DAO = await ethers.getContractFactory("DAO");
-    dao = await DAO.deploy(token.address, "5000000000000000001");
+    dao = await DAO.deploy(token.address, "500000000000000000000001");
 
     // Funder sends 100 Ether do DAO treasury for governance
     await funder.sendTransaction({ to: dao.address, value: ether(100) });
@@ -83,7 +83,7 @@ describe("DAO", () => {
     });
 
     it("returns quorum", async () => {
-      expect(await dao.quorum()).to.equal("5000000000000000001");
+      expect(await dao.quorum()).to.equal("500000000000000000000001");
     });
   });
 
