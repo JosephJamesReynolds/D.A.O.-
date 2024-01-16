@@ -15,8 +15,8 @@ import config from "../config.json";
 
 function App() {
   const [provider, setProvider] = useState(null);
-  const [dao, setDao] = useState(true);
-  const [treasuryBalance, setTreasuryBalance] = useState(true);
+  const [dao, setDao] = useState(null);
+  const [treasuryBalance, setTreasuryBalance] = useState(0);
 
   const [account, setAccount] = useState(null);
 
@@ -28,7 +28,7 @@ function App() {
   const loadBlockchainData = async () => {
     // Initiate provider
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    setProposals(provider);
+    setProvider(provider);
 
     // Initiate Contracts
     const dao = new ethers.Contract(

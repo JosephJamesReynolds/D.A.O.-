@@ -15,7 +15,7 @@ const Proposals = ({ provider, dao, proposals, quorum, setIsLoading }) => {
     setIsLoading(true);
   };
 
-  const finalizedHandler = async (id) => {
+  const finalizeHandler = async (id) => {
     try {
       const signer = await provider.getSigner();
       const transaction = await dao.connect(signer).finalizeProposal(id);
@@ -66,13 +66,12 @@ const Proposals = ({ provider, dao, proposals, quorum, setIsLoading }) => {
                 <Button
                   variant="primary"
                   style={{ width: "100%" }}
-                  onClick={() => finalizedHandler(proposal.id)}
+                  onClick={() => finalizeHandler(proposal.id)}
                 >
                   Finalize
                 </Button>
               )}
             </td>
-            <td></td>
           </tr>
         ))}
       </tbody>

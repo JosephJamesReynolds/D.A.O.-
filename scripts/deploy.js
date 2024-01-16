@@ -23,7 +23,7 @@ async function main() {
   const dao = await DAO.deploy(token.address, "50000000000000000000001");
   await dao.deployed();
 
-  console.log(`DAO deployed to: ${dao.address}/n`);
+  console.log(`DAO deployed to: ${dao.address}\n`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
